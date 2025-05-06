@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Anniversary</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #e6f1ff;
+            scroll-behavior: smooth;
+        }
+        
+        #message {
+    perspective: 1000px; /* Enables 3D effect */
+}
+
+/* Envelope */
+.envelope {
+    background: #f8f3e9;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    max-width: 600px;
+    margin: 0 auto;
+    transform: scale(0.8); /* Initially make the envelope smaller */
+}
+
+/* Envelope flap (hidden behind the content initially) */
+.envelope:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-top: 150px solid #e8d8b8;
+    transform-origin: top;
+    transform: rotateX(0deg); /* Initial state (flap closed) */
+    transition: all 0.5s ease;
+    z-index: 3;
+}
+
+/* Envelope flap open state (when clicked) */
+.envelope.open:before {
+    transform: rotateX(180deg); /* Flip the flap to reveal letter */
+    opacity: 0; /* Hide the flap */
+}
+
+/* Envelope expands when open */
+.envelope.open {
+    transform: scale(1); /* Enlarge the envelope when opened */
+}
+
+/* Letter inside the envelope */
+.envelope .letter {
+    background: white;
+    color: #333;
+    padding: 30px;
+    height: 100%;
+    transform: translateY(0); /* Initially positioned normally */
+    transition: all 0.5s ease;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Prevent interaction when hidden */
+    z-index: 1; /* Letter below flap */
+}
+
+/* Show letter when the envelope is open */
+.envelope.open .letter {
+    opacity: 1; /* Reveal the letter */
+    pointer-events: auto; /* Enable interaction when shown */
+    transform: translateY(-50px); /* Move letter up when open */
+}
+
+/* Optional: For the text styling, like the cursive font for your name */
+.cursive {
+    font-family: 'Pacifico', cursive;
+}
+        
+        .ship {
+    position: absolute;
+    bottom: -50px;
+    left: -100px;
+    width: 100px;
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23e6f1ff" d="M511.8 287.6H512c5.5 0 10.4 4 10.9 9.4C528.3 422.5 412.5 512 280 512S31.7 422.5 13.1 297.4c.5-5.5 5.4-9.4 10.9-9.4h.2c3.1 0 5.9 1.4 7.8 3.7l130.5 151.7c7.6 8.8 22.6 8.8 30.2 0L504 291.3c1.9-2.3 4.7-3.7 7.8-3.7zM280 48c44.2 0 80 35.8 80 80s-35.8 80-80 80-80-35.8-80-80 35.8-80 80-80zM0 196.6v85.5C0 322.6 18.6 341.3 41.6 341.3h28.2c15.9 0 31.8-5.6 44.4-15.5L100 320h376l-14.2 5.8c12.6 9.9 28.5 15.5 44.4 15.5h28.2c23 0 41.6-18.7 41.6-41.6v-85.5c0-23-18.6-41.6-41.6-41.6h-28.2c-15.9 0-31.8 5.6-44.4 15.5L476 192H100l14.2-5.8c-12.6-9.9-28.5-15.5-44.4-15.5H41.6C18.6 155 0 173.6 0 196.6z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 1s ease;
+    z-index: 0;
+    animation: float 4s ease-in-out infinite; /* Floating effect */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%232d3748" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%232d3748" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%232d3748"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .section {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .photo-slide.active {
+            opacity: 1;
+        }
+        
+        .video-container {
+    position: relative;
+    overflow: hidden; /* Prevent overflow, so the video fits nicely */
+}
+
+/* For the video element */
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire container */
+}
+
+/* For the iframe (YouTube or other embedded content) */
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the iframe content fits */
+}
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Dots -->
+    <div class="fixed right-5 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
+        <div class="flex flex-col space-y-3">
+            <a href="#greeting" class="w-3 h-3 rounded-full bg-pink-500 border-2 border-white nav-dot active"></a>
+            <a href="#memories" class="w-3 h-3 rounded-full bg-pink-500 border-2 border-white nav-dot"></a>
+            <a href="#videos" class="w-3 h-3 rounded-full bg-pink-500 border-2 border-white nav-dot"></a>
+            <a href="#message" class="w-3 h-3 rounded-full bg-pink-500 border-2 border-white nav-dot"></a>
+        </div>
+    </div>
+    
+    <!-- Floating Hearts -->
+    <div id="hearts-container"></div>
+    
+    <!-- Greeting Section -->
+    <section id="greeting" class="section flex items-center justify-center text-center px-4">
+        <div class="container mx-auto relative z-10">
+            <div class="ship" id="ship1"></div>
+            <div class="wave"></div>
+            
+            <div class="fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 cursive text-pink-400">Happy Anniversary!</h1>
+                <p class="text-xl md:text-2xl mb-8">To the love of my life, my seaman</p>
+                <div class="flex justify-center space-x-4">
+                    <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center animate-bounce">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center animate-bounce" style="animation-delay: 0.2s;">
+                        <i class="fas fa-anchor text-white text-2xl"></i>
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-pink-500 flex items-center justify-center animate-bounce" style="animation-delay: 0.4s;">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                </div>
+                <p class="mt-8 text-lg">Distance means so little when someone means so much</p>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Photo Memories Section -->
+    <section id="memories" class="section flex items-center justify-center bg-gray-900 px-4">
+        <div class="container mx-auto relative z-10">
+            <div class="ship" id="ship2"></div>
+            <div class="wave"></div>
+            
+            <div class="fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center cursive text-pink-400">Our Beautiful Memories</h2>
+                
+                <div class="photo-slider">
+                    <!-- Replace these with your actual photos -->
+                    <div class="photo-slide active" style="background-image: url('image-asset/Image.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image1.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image2.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image3.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image4.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image5.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image6.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image7.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image8.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image9.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image10.jpg');"></div>
+                    <div class="photo-slide active" style="background-image: url('image-asset/image11.jpg');"></div>
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                
+                <p class="mt-8 text-center max-w-2xl mx-auto">Every moment with you is a treasure I keep in my heart. Even when you're sailing across the oceans, our love bridges the distance.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Videos Section -->
+    <section id="videos" class="section flex items-center justify-center px-4">
+        <div class="container mx-auto relative z-10">
+            <div class="ship" id="ship3"></div>
+            <div class="wave"></div>
+    
+            <div class="fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center cursive text-pink-400">Our Videos</h2>
+    
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- Video 1 -->
+                    <div class="video-container">
+                        <video controls class="w-full h-auto">
+                            <source src="image-asset/video-moment1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+    
+                    <!-- Video 2 -->
+                    <div class="video-container">
+                        <video controls class="w-full h-auto">
+                            <source src="image-asset/video-moment2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+    
+                    <!-- YouTube Video -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-auto"></iframe>
+                    </div>
+                </div>
+    
+                <p class="mt-8 text-center max-w-2xl mx-auto">These videos capture moments I'll cherish forever. No matter how far you sail, you're always here in my heart.</p>
+            </div>
+        </div>
+    </section>  
+    
+    <!-- Message Section -->
+    <section id="message" class="section flex items-center justify-center bg-gray-900 px-4">
+        <div class="container mx-auto relative z-10">
+            <div class="ship" id="ship4"></div>
+            <div class="wave"></div>
+    
+            <div class="fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center cursive text-pink-400">My Love Letter</h2>
+    
+                <div class="envelope" id="envelope">
+                    <!-- Letter hidden initially -->
+                    <div class="letter p-6">
+                        <h3 class="text-2xl font-bold mb-4 cursive text-pink-600">My Dearest,</h3>
+                        <div class="text-gray-800 space-y-4">
+                            <p>As I sit here writing this letter, my heart is full of love for you, even though the miles keep us apart. Today marks another year of our beautiful journey together, and I want you to know how much you mean to me.</p>
+                            
+                            <p>Being in a long-distance relationship with a seaman isn't easy, but every moment with you—whether in person or through messages—makes it all worthwhile. Your strength, your kindness, and your love inspire me every day.</p>
+                            
+                            <p>I remember our first meeting like it was yesterday, the way your smile lit up the room. Now, even when you're sailing across oceans, that same smile brightens my darkest days through photos and video calls.</p>
+                            
+                            <p>I'm so proud of you—of your dedication to your work, of the sacrifices you make, and of the incredible person you are. The sea may take you far from me, but it can never take you from my heart.</p>
+                            
+                            <p>On this anniversary, I want to promise you again what I've promised before: no matter how wide the oceans between us, no matter how long the separations, my love for you will remain as constant as the northern star, guiding you home to me.</p>
+                            
+                            <p>Until we're together again, know that you carry my heart with you on every voyage. Stay safe, my love, and may the winds always bring you back to me.</p>
+                            
+                            <p class="mt-8 cursive text-pink-600">Forever yours,</p>
+                            <p class="cursive text-pink-600">[Your Name]</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="mt-8 text-center">Click the envelope to open my love letter</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final Section -->
+    <section class="min-h-50vh flex items-center justify-center bg-gradient-to-b from-gray-900 to-indigo-900 px-4 py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 cursive text-pink-400">Happy Anniversary, My Love</h2>
+            <p class="text-xl mb-8">Distance is just a test of how far love can travel</p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-heart mr-2"></i> Our Song
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-image mr-2"></i> More Photos
+                </button>
+            </div>
+            <div class="mt-12 text-gray-400">
+                <p>Made with <i class="fas fa-heart text-pink-500"></i> for you</p>
+                <p class="text-sm mt-2">© <span id="year"></span> Our Love Story</p>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Create stars
+        function createStars() {
+            const container = document.body;
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1 and 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                // Random animation duration
+                const duration = Math.random() * 5 + 3;
+                star.style.setProperty('--duration', `${duration}s`);
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart text-pink-400"></i>';
+                
+                // Random size
+                const size = Math.random() * 20 + 10;
+                heart.style.fontSize = `${size}px`;
+                
+                // Random position
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 3 + 3;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Photo slider
+        function initPhotoSlider() {
+            const slides = document.querySelectorAll('.photo-slide');
+            let currentSlide = 0;
+            
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            setInterval(nextSlide, 3000);
+        }
+        
+        // Envelope interaction
+        function initEnvelope() {
+            const envelope = document.getElementById('envelope');
+            
+            envelope.addEventListener('click', function() {
+                this.classList.toggle('open');
+            });
+        }
+        
+        // Ship animations on scroll
+        function initShipAnimations() {
+            const ships = {
+                ship1: { start: 0, end: 25, element: document.getElementById('ship1') },
+                ship2: { start: 25, end: 50, element: document.getElementById('ship2') },
+                ship3: { start: 50, end: 75, element: document.getElementById('ship3') },
+                ship4: { start: 75, end: 100, element: document.getElementById('ship4') }
+            };
+            
+            function updateShips() {
+                const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                
+                for (const [id, ship] of Object.entries(ships)) {
+                    if (scrollPercentage >= ship.start && scrollPercentage <= ship.end) {
+                        const progress = (scrollPercentage - ship.start) / (ship.end - ship.start);
+                        const position = progress * (window.innerWidth + 200) - 100;
+                        ship.element.style.left = `${position}px`;
+                        ship.element.style.opacity = '1';
+                    } else if (scrollPercentage < ship.start) {
+                        ship.element.style.left = '-100px';
+                        ship.element.style.opacity = '0';
+                    } else {
+                        ship.element.style.left = `${window.innerWidth + 100}px`;
+                        ship.element.style.opacity = '0';
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', updateShips);
+            updateShips();
+        }
+        
+        // Scroll animations for sections
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkVisibility() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Check on load
+        }
+        
+        // Navigation dots interaction
+        function initNavigationDots() {
+            const sections = document.querySelectorAll('section');
+            const dots = document.querySelectorAll('.nav-dot');
+            
+            function updateDots() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        dots.forEach(dot => dot.classList.remove('active'));
+                        dots[index].classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateDots);
+            updateDots(); // Update on load
+            
+            // Click event for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    sections[index].scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createHearts();
+            initPhotoSlider();
+            initEnvelope();
+            initShipAnimations();
+            initScrollAnimations();
+            initNavigationDots();
+        });
+    </script>
+</body>
+</html>
