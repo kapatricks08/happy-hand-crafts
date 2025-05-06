@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Anniversary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0a192f;
+        }
+        .password-screen {
+            background: rgba(8, 4, 71, 0.95);
+        }
+        .password-box {
+            background: linear-gradient(145deg, #9c0f91, #3d1745);
+            border: 1px solid #1e3a8a;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .typing-effect::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <!-- Password Protection Screen -->
+    <div id="passwordScreen" class="fixed inset-0 password-screen flex items-center justify-center z-50 transition-all duration-500">
+        <div class="password-box rounded-xl p-8 max-w-md w-full mx-4 text-center shadow-2xl transform transition-all duration-300 hover:scale-105 relative overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="glitter"></div>
+            </div>
+            
+            <div class="relative z-10">
+                <div class="heart-container mb-6">
+                    <i class="fas fa-heart text-pink-500 text-6xl heart-beat"></i>
+                </div>
+                
+                <h1 class="text-3xl font-bold text-pink-300 mb-2 cursive">Our Secret Code</h1>
+                <p class="text-blue-200 mb-6">Enter our special call sign to continue</p>
+                
+                <div class="relative mb-4">
+                    <input type="password" id="passwordInput" class="w-full px-4 py-3 rounded-lg bg-blue-900 bg-opacity-50 text-white border-2 border-blue-700 focus:border-pink-500 focus:outline-none transition-all placeholder-blue-400" placeholder="What is our call sign?">
+                </div>
+                
+                <button id="submitBtn" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full transition duration-300 transform hover:scale-105 flex items-center justify-center mx-auto shadow-lg">
+                    <i class="fas fa-heart mr-2"></i> Unlock Our Memories
+                </button>
+                
+                <div id="errorMessage" class="mt-4 text-pink-300 font-medium hidden shake"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password Configuration
+        const CORRECT_PASSWORD = "forever"; // Change this to your special word
+        const passwordScreen = document.getElementById('passwordScreen');
+        const passwordInput = document.getElementById('passwordInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Create glitter effect
+        function createGlitter() {
+            const container = document.querySelector('.glitter');
+            for (let i = 0; i < 30; i++) {
+                const glitter = document.createElement('div');
+                glitter.className = 'glitter';
+                glitter.style.left = Math.random() * 100 + '%';
+                glitter.style.top = Math.random() * 100 + '%';
+                glitter.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite ${Math.random() * 2}s`;
+                container.appendChild(glitter);
+            }
+        }
+
+        // Submit password
+        submitBtn.addEventListener('click', checkPassword);
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        function checkPassword() {
+            const userInput = passwordInput.value.trim().toLowerCase();
+            
+            if (userInput === CORRECT_PASSWORD) {
+                // Correct password - show thank you modal
+                showThankYouModal();
+            } else {
+                // Wrong password
+                errorMessage.textContent = userInput 
+                    ? `Sino si "${userInput}"? 😠` 
+                    : "Please enter our call sign! ❤️";
+                errorMessage.classList.remove('hidden');
+                errorMessage.classList.add('shake');
+                
+                passwordInput.classList.add('border-pink-500');
+                setTimeout(() => {
+                    passwordInput.classList.remove('border-pink-500');
+                    errorMessage.classList.remove('shake');
+                }, 500);
+                
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        function showThankYouModal() {
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-xl p-8 max-w-md w-full mx-4 text-center shadow-2xl relative overflow-hidden border border-blue-600">
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="glitter"></div>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="heart-container mb-6">
+                            <i class="fas fa-heart text-pink-500 text-6xl animate-pulse"></i>
+                        </div>
+                        
+                        <h2 class="text-2xl font-bold text-pink-300 mb-6 cursive">Thank You Message</h2>
+                        
+                        <div id="typingText" class="text-blue-200 text-left min-h-32 mb-6 typing-effect"></div>
+                        
+                        <button id="continueBtn" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-full transition duration-300 transform hover:scale-105 flex items-center justify-center mx-auto shadow-lg opacity-0">
+                            <i class="fas fa-arrow-right mr-2"></i> Continue
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Thank you message (continuous text)
+            const fullMessage = "Maraming salamat sa lahat ng iyong suporta at pagmamahal. " +
+                                "Ang bawat sandali na kasama ka ay tunay na espesyal para sa akin. " +
+                                "Hindi matatawaran ang saya at inspirasyon na ibinibigay mo sa akin araw-araw.";
+            
+            const typingText = modal.querySelector('#typingText');
+            const continueBtn = modal.querySelector('#continueBtn');
+            
+            let currentChar = 0;
+            const typingSpeed = 30; // Adjust typing speed here
+            
+            function typeWriter() {
+                if (currentChar < fullMessage.length) {
+                    typingText.textContent = fullMessage.substring(0, currentChar + 1);
+                    currentChar++;
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    // Show continue button when typing completes
+                    continueBtn.classList.remove('opacity-0');
+                }
+            }
+            
+            // Start typing effect
+            setTimeout(typeWriter, 500);
+            
+            // Continue button - redirect to happy-hand-crafts.html
+            continueBtn.addEventListener('click', () => {
+                window.location.href = 'happy-hand-crafts.html';
+            });
+            
+            // Create glitter for modal
+            const modalContainer = modal.querySelector('.glitter');
+            for (let i = 0; i < 30; i++) {
+                const glitter = document.createElement('div');
+                glitter.className = 'glitter';
+                glitter.style.left = Math.random() * 100 + '%';
+                glitter.style.top = Math.random() * 100 + '%';
+                glitter.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite ${Math.random() * 2}s`;
+                modalContainer.appendChild(glitter);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createGlitter();
+            passwordInput.focus();
+        });
+    </script>
+</body>
+</html>
