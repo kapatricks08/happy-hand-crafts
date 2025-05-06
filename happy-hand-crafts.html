@@ -334,67 +334,32 @@
     }
 
     /* Timeline styles */
-    .timeline-mobile-header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: linear-gradient(to bottom, #4c1d95, #312e81);
-            padding: 0.5rem 1rem;
+    .timeline-container {
+            min-height: 600px;
         }
         
-        .timeline-mobile-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .timeline-mobile-scroll .year-bubble {
-            flex: 0 0 auto;
-            width: 5rem;
-            height: 5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9999px;
-            background-color: #db2777;
-            color: white;
-            font-weight: bold;
-            font-size: 1.25rem;
-            cursor: pointer;
+        .year-bubble {
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.3);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        .timeline-mobile-scroll .year-bubble.active {
-            background-color: #9d174d;
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .year-bubble:hover {
+            box-shadow: 0 0 0 8px rgba(236, 72, 153, 0.3);
+            transform: scale(1.1);
         }
         
-        /* Story Viewer */
-        .story-viewer {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin: 1rem;
-            transition: opacity 0.3s ease;
+        .story-card {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
-        /* Hide desktop timeline on mobile */
+        /* Mobile timeline item */
         @media (max-width: 767px) {
-            .timeline-container {
-                display: none;
+            .timeline-item {
+                margin-bottom: 2rem;
             }
-        }
-        
-        /* Show desktop timeline on larger screens */
-        @media (min-width: 768px) {
-            .timeline-mobile-header {
-                display: none;
+            
+            .year-bubble {
+                margin: 0 auto 1rem;
             }
         }
     </style>
@@ -461,7 +426,7 @@
 
 <!-- Background Music -->
 <audio loop id="bgMusic">
-    <source src="image-asset/background-song.mp3" type="audio/mpeg">
+    <source src="background-song.mp3" type="audio/mpeg">
 </audio>
     <!-- Navigation Dots -->
     <div class="fixed right-5 top-1/2 transform -translate-y-1/2 z-50 hidden md:block">
