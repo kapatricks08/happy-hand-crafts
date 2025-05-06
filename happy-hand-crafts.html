@@ -573,150 +573,219 @@
             </div>
         </div>
     </section>
-     <!-- Journey Timeline Section -->
-     <section id="journey" class="section flex items-center justify-center bg-gradient-to-b from-indigo-900 to-purple-900 px-4 py-12">
-        <div class="container mx-auto relative z-10">
-            <div class="wave"></div>
+    <!-- Journey Timeline Section - Mobile Friendly Version -->
+<section id="journey" class="section flex items-center justify-center bg-gradient-to-b from-indigo-900 to-purple-900 px-4 py-12">
+    <div class="container mx-auto relative z-10">
+        <div class="wave"></div>
+        
+        <div class="fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center cursive text-pink-400">Our Journey</h2>
             
-            <div class="fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center cursive text-pink-400">Our Journey</h2>
-                
-                <div class="timeline-container relative max-w-4xl mx-auto">
-                    <!-- Timeline line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-pink-500 h-full top-0"></div>
+            <!-- Mobile Timeline (Shows only on mobile) -->
+            <div class="mobile-timeline md:hidden">
+                <div class="year-navigation flex justify-between items-center mb-6">
+                    <button id="prevYearMobile" class="nav-button bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center disabled:bg-gray-500" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                     
-                    <!-- Timeline items will be added here -->
-                    <div class="space-y-16">
-                        <!-- 2015 -->
-                        <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                2020
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">Our Beginning</h3>
-                                <p class="text-gray-100">The year we first met. Remember that awkward first date at the coffee shop? You spilled your latte and I laughed - not at you, but with you (though you were still embarrassed). Little did we know that clumsy moment would be the start of our beautiful story.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-heart text-white"></i>
-                                    </div>
+                    <div class="current-year text-2xl font-bold text-pink-300 mx-4" id="currentYearMobile">2020</div>
+                    
+                    <button id="nextYearMobile" class="nav-button bg-pink-600 text-white rounded-full w-12 h-12 flex items-center justify-center">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <div class="story-card bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-pink-300 border-opacity-30">
+                    <h3 id="storyTitleMobile" class="text-xl font-bold text-pink-300 mb-4">Our Beginning</h3>
+                    <p id="storyContentMobile" class="text-gray-100 mb-4">The year we first met...</p>
+                    <div class="story-icon flex justify-center">
+                        <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                            <i id="storyIconMobile" class="fas fa-heart text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop Timeline (Shows only on desktop) -->
+            <div class="timeline-container relative max-w-4xl mx-auto hidden md:block">
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-pink-500 h-full top-0"></div>
+                
+                <div class="space-y-16">
+                    <!-- 2020 -->
+                    <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
+                        <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
+                            2020
+                        </div>
+                        <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                            <h3 class="text-xl font-bold text-pink-300 mb-2">Our Beginning</h3>
+                            <p class="text-gray-100">The year we first met. Remember that awkward first date at the coffee shop? You spilled your latte and I laughed - not at you, but with you (though you were still embarrassed). Little did we know that clumsy moment would be the start of our beautiful story.</p>
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                                    <i class="fas fa-heart text-white"></i>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- 2016 -->
-                        <div class="timeline-item group relative flex flex-col md:flex-row-reverse items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:ml-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                2021
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">First Challenges</h3>
-                                <p class="text-gray-100">Your first long voyage. I cried when you left but you promised to bring me seashells from every port. That box of shells you sent is still my most treasured possession. We learned that distance makes the heart grow fonder, but also stronger.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-anchor text-white"></i>
-                                    </div>
+                    </div>
+                    
+                    <!-- 2021 -->
+                    <div class="timeline-item group relative flex flex-col md:flex-row-reverse items-center justify-center transition-all duration-500 hover:scale-105">
+                        <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:ml-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
+                            2021
+                        </div>
+                        <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                            <h3 class="text-xl font-bold text-pink-300 mb-2">First Challenges</h3>
+                            <p class="text-gray-100">Your first long voyage. I cried when you left but you promised to bring me seashells from every port. That box of shells you sent is still my most treasured possession. We learned that distance makes the heart grow fonder, but also stronger.</p>
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                                    <i class="fas fa-anchor text-white"></i>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- 2017 -->
-                        <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                2022
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">Growing Together</h3>
-                                <p class="text-gray-100">The year we adopted Luna! That video call when you first saw her - your face lit up like a Christmas tree. She became our connection when you were away, and our joy when you were home. Our little family was growing in love if not in size.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-paw text-white"></i>
-                                    </div>
+                    </div>
+                    
+                    <!-- Add more years as needed -->
+                    <!-- 2022 -->
+                    <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
+                        <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
+                            2022
+                        </div>
+                        <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                            <h3 class="text-xl font-bold text-pink-300 mb-2">Growing Together</h3>
+                            <p class="text-gray-100">The year we adopted our pet! That video call when you first saw her - your face lit up like a Christmas tree. She became our connection when you were away, and our joy when you were home. Our little family was growing in love if not in size.</p>
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                                    <i class="fas fa-paw text-white"></i>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Add more years as needed -->
-                        <!-- 2018 -->
-                        <div class="timeline-item group relative flex flex-col md:flex-row-reverse items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:ml-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                2023
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">The Big Storm</h3>
-                                <p class="text-gray-100">The typhoon that kept you at sea an extra month. I've never prayed so hard in my life. When you finally docked, your hug felt like coming home. That year taught us that our love could weather any storm - literal or metaphorical.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-umbrella text-white"></i>
-                                    </div>
+                    </div>
+                    
+                    <!-- 2023 -->
+                    <div class="timeline-item group relative flex flex-col md:flex-row-reverse items-center justify-center transition-all duration-500 hover:scale-105">
+                        <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:ml-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
+                            2023
+                        </div>
+                        <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                            <h3 class="text-xl font-bold text-pink-300 mb-2">The Big Storm</h3>
+                            <p class="text-gray-100">The typhoon that kept you at sea an extra month. I've never prayed so hard in my life. When you finally docked, your hug felt like coming home. That year taught us that our love could weather any storm - literal or metaphorical.</p>
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                                    <i class="fas fa-umbrella text-white"></i>
                                 </div>
                             </div>
                         </div>
-                         <!-- 2024 -->
-                         <div class="timeline-item group relative flex flex-col md:flex-row-reverse items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:ml-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                2024
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">The Big Storm</h3>
-                                <p class="text-gray-100">The typhoon that kept you at sea an extra month. I've never prayed so hard in my life. When you finally docked, your hug felt like coming home. That year taught us that our love could weather any storm - literal or metaphorical.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-umbrella text-white"></i>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                    
+                    <!-- Present -->
+                    <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
+                        <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
+                            Present
                         </div>
-                        
-                        <!-- Present -->
-                        <div class="timeline-item group relative flex flex-col md:flex-row items-center justify-center transition-all duration-500 hover:scale-105">
-                            <div class="year-bubble bg-pink-600 text-white rounded-full w-24 h-24 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-8 z-10 cursor-pointer hover:bg-pink-700 transition-all duration-300">
-                                Present
-                            </div>
-                            <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 class="text-xl font-bold text-pink-300 mb-2">Our Love Today</h3>
-                                <p class="text-gray-100">After all these years, my heart still skips a beat when I see your name pop up on my phone. The countdown to your return is always my favorite calendar. Through all the hellos and goodbyes, one thing remains constant - this incredible love we've built together.</p>
-                                <div class="mt-4 flex justify-center">
-                                    <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
-                                        <i class="fas fa-ring text-white"></i>
-                                    </div>
+                        <div class="story-card hidden md:block bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 max-w-md border border-pink-300 border-opacity-30 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                            <h3 class="text-xl font-bold text-pink-300 mb-2">Our Love Today</h3>
+                            <p class="text-gray-100">After all these years, my heart still skips a beat when I see your name pop up on my phone. The countdown to your return is always my favorite calendar. Through all the hellos and goodbyes, one thing remains constant - this incredible love we've built together.</p>
+                            <div class="mt-4 flex justify-center">
+                                <div class="w-16 h-16 rounded-full bg-pink-500 bg-opacity-30 flex items-center justify-center">
+                                    <i class="fas fa-ring text-white"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Mobile story viewer (hidden on desktop) -->
-                    <h2 class="text-3xl font-bold mb-8 text-center cursive text-pink-400">Our Journey</h2>
-                    
-                    <div class="year-navigation">
-                        <button id="prevYear" class="nav-button">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        
-                        <div class="current-year" id="currentYear">2015</div>
-                        
-                        <button id="nextYear" class="nav-button">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-            
-                    
-                    <div class="story-card">
-                        <h3 id="storyTitle" class="text-xl font-bold text-pink-300 mb-4">Our Beginning</h3>
-                        <p id="storyContent" class="text-gray-100">The year we first met. Remember that awkward first date at the coffee shop? You spilled your latte and I laughed - not at you, but with you...</p>
-                        <div class="story-icon">
-                            <i id="storyIcon" class="fas fa-heart text-white text-2xl"></i>
-                        </div>
-                    </div>
             </div>
-            <div class="flex justify-center mt-8">
-                <button class="permanent-heart-btn">
-                    <svg viewBox="0 0 24 24" class="heart-icon">
-                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                  </button>
-              </div>
         </div>
+    </div>
+</section>
+
+<script>
+// Timeline data for mobile
+const mobileTimelineData = [
+    {
+        year: "2020",
+        title: "Our Beginning",
+        content: "The year we first met. Remember that awkward first date at the coffee shop? You spilled your latte and I laughed - not at you, but with you (though you were still embarrassed). Little did we know that clumsy moment would be the start of our beautiful story.",
+        icon: "fa-heart"
+    },
+    {
+        year: "2021",
+        title: "First Challenges",
+        content: "Your first long voyage. I cried when you left but you promised to bring me seashells from every port. That box of shells you sent is still my most treasured possession. We learned that distance makes the heart grow fonder, but also stronger.",
+        icon: "fa-anchor"
+    },
+    {
+        year: "2022",
+        title: "Growing Together",
+        content: "The year we adopted our pet! That video call when you first saw her - your face lit up like a Christmas tree. She became our connection when you were away, and our joy when you were home. Our little family was growing in love if not in size.",
+        icon: "fa-paw"
+    },
+    {
+        year: "2023",
+        title: "The Big Storm",
+        content: "The typhoon that kept you at sea an extra month. I've never prayed so hard in my life. When you finally docked, your hug felt like coming home. That year taught us that our love could weather any storm - literal or metaphorical.",
+        icon: "fa-umbrella"
+    },
+    {
+        year: "Present",
+        title: "Our Love Today",
+        content: "After all these years, my heart still skips a beat when I see your name pop up on my phone. The countdown to your return is always my favorite calendar. Through all the hellos and goodbyes, one thing remains constant - this incredible love we've built together.",
+        icon: "fa-ring"
+    }
+];
+
+// Mobile timeline functionality
+if (window.innerWidth < 768) {
+    let currentMobileIndex = 0;
+    const currentYearEl = document.getElementById('currentYearMobile');
+    const storyTitleEl = document.getElementById('storyTitleMobile');
+    const storyContentEl = document.getElementById('storyContentMobile');
+    const storyIconEl = document.getElementById('storyIconMobile');
+    const prevBtn = document.getElementById('prevYearMobile');
+    const nextBtn = document.getElementById('nextYearMobile');
+
+    function updateMobileTimeline() {
+        const current = mobileTimelineData[currentMobileIndex];
+        currentYearEl.textContent = current.year;
+        storyTitleEl.textContent = current.title;
+        storyContentEl.textContent = current.content;
+        storyIconEl.className = `fas ${current.icon} text-white text-2xl`;
+        
+        // Update button states
+        prevBtn.disabled = currentMobileIndex === 0;
+        nextBtn.disabled = currentMobileIndex === mobileTimelineData.length - 1;
+    }
+
+    // Button event listeners
+    prevBtn.addEventListener('click', () => {
+        if (currentMobileIndex > 0) {
+            currentMobileIndex--;
+            updateMobileTimeline();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentMobileIndex < mobileTimelineData.length - 1) {
+            currentMobileIndex++;
+            updateMobileTimeline();
+        }
+    });
+
+    // Initialize
+    updateMobileTimeline();
+}
+
+// Desktop timeline hover effects
+if (window.innerWidth >= 768) {
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.querySelector('.story-card').classList.add('opacity-100', 'translate-y-0');
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.querySelector('.story-card').classList.remove('opacity-100', 'translate-y-0');
+        });
+    });
+}
+</script>
         <!-- Heart Button with Animation -->
 
         <style>
@@ -763,7 +832,7 @@
           </style>
           
           
-    </section>
+
     <!-- Photo Memories Section -->
     <section id="memories" class="section flex items-center justify-center bg-gray-900 px-4">
         <div class="container mx-auto relative z-10">
@@ -1217,6 +1286,122 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    </script>
+    <script>
+        // Video handling for mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all videos
+    const videos = document.querySelectorAll('.video-container video');
+    
+    // Add click handler to each video container
+    document.querySelectorAll('.video-container').forEach((container, index) => {
+        const video = container.querySelector('video');
+        const overlay = container.querySelector('.video-play-overlay');
+        
+        // Click/tap to play
+        container.addEventListener('click', function() {
+            if(video.paused) {
+                video.play()
+                    .then(() => {
+                        container.classList.add('playing');
+                    })
+                    .catch(e => {
+                        console.error("Video play failed:", e);
+                    });
+            } else {
+                video.pause();
+                container.classList.remove('playing');
+            }
+        });
+        
+        // For iOS - needs special handling
+        video.addEventListener('play', function() {
+            container.classList.add('playing');
+        });
+        
+        video.addEventListener('pause', function() {
+            container.classList.remove('playing');
+        });
+    });
+    
+    // Enable video playback after any user interaction
+    function enableVideos() {
+        document.querySelectorAll('.video-container video').forEach(video => {
+            video.muted = true; // Mute by default for autoplay
+            video.play().catch(e => console.log("Video autoplay blocked"));
+        });
+    }
+    
+    // Try to enable on first interaction
+    document.addEventListener('click', enableVideos, { once: true });
+    document.addEventListener('touchstart', enableVideos, { once: true });
+});
+// DOM elements
+const musicToggle = document.getElementById('musicToggle');
+const bgMusic = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+const vinylDisc = document.getElementById('vinylDisc');
+const playHelp = document.getElementById('playHelp');
+
+// State
+let isPlaying = false;
+bgMusic.volume = 0.3;
+
+// 1. Try to autoplay immediately (will fail on mobile)
+bgMusic.play().catch(e => {
+  console.log("Autoplay blocked, showing help text");
+  playHelp.classList.remove('hidden');
+});
+
+// 2. Mobile-friendly play trigger
+function enableAudio() {
+  bgMusic.play()
+    .then(() => {
+      isPlaying = true;
+      updatePlayState();
+      playHelp.classList.add('hidden');
+    })
+    .catch(e => {
+      console.log("Playback failed:", e);
+    });
+}
+
+// 3. Add these event listeners for mobile
+document.addEventListener('click', function firstInteraction() {
+  enableAudio();
+  // Remove after first interaction
+  document.removeEventListener('click', firstInteraction);
+}, { once: true });
+
+document.addEventListener('touchstart', function firstTouch() {
+  enableAudio();
+  document.removeEventListener('touchstart', firstTouch);
+}, { once: true });
+
+// 4. Normal toggle functionality
+musicToggle.addEventListener('click', function(e) {
+  e.stopPropagation(); // Prevent triggering document click
+  
+  if (isPlaying) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
+  isPlaying = !isPlaying;
+  updatePlayState();
+});
+
+function updatePlayState() {
+  if (isPlaying) {
+    musicIcon.classList.replace('fa-play', 'fa-pause');
+    vinylDisc.classList.add('animate-spin-slow');
+    startNoteAnimation();
+  } else {
+    musicIcon.classList.replace('fa-pause', 'fa-play');
+    vinylDisc.classList.remove('animate-spin-slow');
+    stopNoteAnimation();
+  }
+}
     </script>
     <script>
         
