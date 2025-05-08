@@ -27,20 +27,91 @@
 }
 
 /* Envelope container */
+/* Envelope container */
+.envelope-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .envelope {
-    background: #ffd1dc;
-    border-radius: 12px; /* More rounded for the hugging effect */
+    background-image: url('image-asset/envelop-cover.png');
+    background-size:contain;
+    background-position: center;
+    
+ 
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
     transition: all 0.5s ease;
     transform-style: preserve-3d;
     cursor: pointer;
     width: 100%;
-    max-width: 600px;
     margin: 0 auto;
-    transform: scale(0.8); /* Initially smaller */
-    height: auto;
-    overflow: hidden; /* Prevent overflow for a neat look */
+    transform: scale(0.8);
+    height: 400px; /* Fixed height */
+    overflow: hidden;
+}
+
+.letter {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-content {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    flex-grow: 1;
+    padding-right: 8px; /* Prevents text from touching scrollbar */
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #f9a8d4 #fce7f3;
+}
+
+/* For Webkit browsers */
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-content::-webkit-scrollbar-track {
+    background: #fce7f3;
+    border-radius: 10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb {
+    background-color: #f9a8d4;
+    border-radius: 10px;
+}
+
+/* Animation when content overflows */
+@keyframes fadeScroll {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.letter-content:hover {
+    animation: fadeScroll 2s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .envelope {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        height: 300px;
+    }
 }
 
 .envelope:before {
@@ -999,20 +1070,22 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center cursive text-pink-400">My Love Letter</h2>
     
-                <div class="envelope" id="envelope">
-                    <!-- Letter hidden initially -->
-                    <div class="letter p-6">
-                        <h3 class="text-2xl font-bold mb-4 cursive text-pink-600 typing-effect">My Dearest,</h3>
-                        <div class="text-gray-800 space-y-4">
-                            <p class="typing-effect">Happy anniversary, my love! Thank you for your consistency, your patience, and for always taking care of me. I'm so bilib sa pag-intindi at patience mo sa lahat ng bagay—from my busy schedules, sa moodswings ko, at sa pagiging matagal ko mag-ayos at mag-prepare. Thank you for always choosing to understand me. Maadjust lng galing ko sometimes, basi nagatimpi ka lng ag. hahahah. Thank you so much for being my taga-hatid-sundo sa work. I really appreciate your time, effort, and care. Your presence beside me brings so much comfort and peace, especially after long, tiring days. And now nga LDR uman kita, your constant assurance of love, even from afar, is more than enough to make me feel at ease. Thank you for being there, not just during the happy moments, but also through the most challenging seasons of my life. Your presence, whether near or far, means the world to me. May God continue to bless and guide our relationship. I love you always, my palangga! Keep safe and see you again soon bby. Happy anniversary to us! 🩷</p>
-                          
-                            <p class="cursive text-pink-600 typing-effect">Your Loves</p>
+                <div class="envelope-container">
+                    <div class="envelope" id="envelope">
+                        <!-- Letter hidden initially -->
+                        <div class="letter p-6">
+                            <h3 class="text-2xl font-bold mb-4 cursive text-pink-600 typing-effect">My Love,</h3>
+                            <div class="text-gray-800 space-y-4 letter-content">
+                                <p class="typing-effect">Happy anniversary, my love! Thank you for your consistency, your patience, and for always taking care of me. I'm so bilib sa pag-intindi at patience mo sa lahat ng bagay—from my busy schedules, sa moodswings ko, at sa pagiging matagal ko mag-ayos at mag-prepare. Thank you for always choosing to understand me. Maadjust lng galing ko sometimes, basi nagatimpi ka lng ag. hahahah. Thank you so much for being my taga-hatid-sundo sa work. I really appreciate your time, effort, and care. Your presence beside me brings so much comfort and peace, especially after long, tiring days. And now nga LDR uman kita, your constant assurance of love, even from afar, is more than enough to make me feel at ease. Thank you for being there, not just during the happy moments, but also through the most challenging seasons of my life. Your presence, whether near or far, means the world to me. May God continue to bless and guide our relationship. I love you always, my palangga! Keep safe and see you again soon bby. Happy anniversary to us! 🩷</p>
+                                
+                                <p class="typing-effect">Until we're together again, know that you carry my heart with you on every voyage. Stay safe, my love, and may the winds always bring you back to me.</p>
+                                <p class="mt-8 cursive text-pink-600 typing-effect">Forever yours,</p>
+                                <p class="cursive text-pink-600 typing-effect">Your Love</p>
+                            </div>
                         </div>
                     </div>
+                    <p class="mt-8 text-center">Click the envelope to open my love letter</p>
                 </div>
-    
-                <p class="mt-8 text-center">Click the envelope to open my love letter</p>
-            </div>
             <div class="flex justify-center mt-8">
                 <button class="permanent-heart-btn">
                     <svg viewBox="0 0 24 24" class="heart-icon">
